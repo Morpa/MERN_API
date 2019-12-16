@@ -1,17 +1,7 @@
-const uuid = require("uuid/v4");
 const { validationResult } = require("express-validator");
 
 const HttpError = require("../models/http-error");
 const User = require("../models/user");
-
-const DUMMY_USERS = [
-  {
-    id: "u1",
-    name: "Andre",
-    email: "andre@email.com",
-    password: "teste"
-  }
-];
 
 const getUsers = async (req, res, next) => {
   let users;
@@ -35,7 +25,7 @@ const signup = async (req, res, next) => {
     );
   }
 
-  const { name, email, password, places } = req.body;
+  const { name, email, password } = req.body;
 
   let existingUser;
   try {
@@ -59,7 +49,7 @@ const signup = async (req, res, next) => {
     image:
       "https://ipc.digital/wp-content/uploads/2016/07/icon-user-default.png",
     password,
-    places
+    places: []
   });
 
   try {
