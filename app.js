@@ -49,10 +49,10 @@ app.use((error, req, res, next) => {
 
 mongoose
   .connect(
-    'mongodb+srv://morpa:CeXFj5oDt7ua1Gh3@mern-3pduj.azure.mongodb.net/mern?retryWrites=true&w=majority'
+    `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASSWORD}@${process.env.DB_NAME}-3pduj.azure.mongodb.net/mern?retryWrites=true&w=majority`
   )
   .then(() => {
-    app.listen(5000);
+    app.listen(process.env.PORT || 5000);
   })
   .catch(err => {
     console.log(err);
